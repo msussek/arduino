@@ -96,7 +96,7 @@ const char* mqtt_password = "meinMQTTPasswort";
 
 - Die folgenden Datenpunkte unter javascript.0.Gas müssen in ioBroker manuell angelegt werden:
 
-<img src="img/fritzing.jpg" width=1024 /><br/>
+<img src="img/iobroker-objects.png" width=1024 /><br/>
 
   - BrennwertAktiv
 
