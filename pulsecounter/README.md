@@ -12,7 +12,7 @@ Der Impulszähler kann dank der Kommunikation per MQTT in eine Vielzahl von Integ
 
 ## Videos
 
-Zu dem Impulszähler und der Einbindung in ioBroker gibt es auch eine Serie an Videos:
+Zu dem Impulszähler und der Einbindung in ioBroker gibt es auch eine Serie an Tutorial-Videos:
 
 Teil 1: https://www.youtube.com/watch?v=59IVzMe4mbc
 
@@ -21,7 +21,7 @@ Inhalte:
 - Schaltung auf dem Breadboard
 - Kurze Demonstration 
   - manuelle Auslösung mit einem Magneten, Log-Ausgabe im Serial Monitor
-  - Übertragung der Werte per MQTT den ioBroker
+  - Übertragung der Werte per MQTT an ioBroker
   - Konfiguration der Entprellzeit in ioBroker
   
 Teil 2: https://www.youtube.com/watch?v=mi9-MsSPrNs
