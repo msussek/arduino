@@ -397,5 +397,8 @@ const char* mqtt_password = "meinMQTTPasswort";
   }
 }
 ```
+- Die Werte der Datenpunkte Brennwert und Zustandszahl müssen manuell eingegeben werden, die Werte können regional unterschiedlich sein, ein Blick auf die letzte Jahresabrechnung des Gasanbieters hilft. Bei uns im Rhein-Main-Gebiet gelten die folgenden Werte:
+  - Brennwert 11.3 kWh/m³
+  - Zustandszahl 0.958
 
 - Anschließend den Blockly-Export unter src/iobroker/ImpulszaehlerAuswertungBlocklyExport.xml in ein neues Blockly importieren oder alternativ ImpulsZaehlerAuswertung.js als neues Javascript anlegen und das Skript aktiv schalten
