@@ -1,5 +1,7 @@
 # Impulszähler mit MQTT / HTTP Schnittstelle und Einbindung in ioBroker
 
+<img src="img/titel.jpg" width=1024 /><br/>
+
 Dies ist ein ganz simpler Sketch für einen Impulszähler basierend auf einem Wemos D1 Mini Mikrocontroller.
 
 Der Impulszähler besitzt 6 digitale Zählereingänge und kann diese gleichzeitig unabhängig voneiander verarbeiten. Das heißt, es können bis zu 6 Zähler, die Impulssignale ausgeben, gleichzeitig angeschlossen werden.
