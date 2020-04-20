@@ -1,9 +1,9 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
   <variables>
     <variable type="" id="j|{~CY1?y26]LN#~uT^4">deltaZeit</variable>
-    <variable type="" id="`=+tU0kV!rdU(pLX8z~=">deltaWert</variable>
     <variable type="" id="}Msf-u{Dl|0.Yu#6So/v">value</variable>
     <variable type="" id="n0;nc_Dr/_p:@wv6]_ok">oldValue</variable>
+    <variable type="" id="`=+tU0kV!rdU(pLX8z~=">deltaWert</variable>
     <variable type="" id="`.UFBg~oDO@AKa{P|7/r">verbrauchInKubikmeter</variable>
     <variable type="" id="|buGgY_h*rG@#N6JH6o$">verbrauchInKwh</variable>
     <variable type="" id="|wda0[7^Yn|7yk3EXgnK">gasVolumenStrom</variable>
@@ -48,356 +48,431 @@
               </block>
             </value>
             <next>
-              <block type="comment" id="yVm=`rt=.9(|0:~7ba^N">
-                <field name="COMMENT">Anzahl Impulse seit letzter Änderung</field>
-                <next>
-                  <block type="variables_set" id="(.T)I[h8]M9BrK?*QO#X">
-                    <field name="VAR" id="`=+tU0kV!rdU(pLX8z~=" variabletype="">deltaWert</field>
-                    <value name="VALUE">
-                      <block type="math_arithmetic" id="zBS:o#DCQ:e`}aOHVem{">
-                        <field name="OP">MINUS</field>
-                        <value name="A">
-                          <shadow type="math_number" id=".X^]lPIX{Y29#ZQ$=PDG">
-                            <field name="NUM">1</field>
-                          </shadow>
-                          <block type="variables_get" id="35cMtGqFa,0rRePT#n8n">
-                            <field name="VAR" id="}Msf-u{Dl|0.Yu#6So/v" variabletype="">value</field>
-                          </block>
-                        </value>
-                        <value name="B">
-                          <shadow type="math_number" id="S=O^y)7,n[4X,I)IFu75">
-                            <field name="NUM">1</field>
-                          </shadow>
-                          <block type="variables_get" id=";()@![CVwvKn$y6cK9j]">
-                            <field name="VAR" id="n0;nc_Dr/_p:@wv6]_ok" variabletype="">oldValue</field>
-                          </block>
-                        </value>
+              <block type="controls_if" id="MBNjq$Zjj(t4}iAGl_pD">
+                <mutation else="1"></mutation>
+                <value name="IF0">
+                  <block type="logic_compare" id="}PyqQ96/wl%565s)t0dB">
+                    <field name="OP">LT</field>
+                    <value name="A">
+                      <block type="variables_get" id="#(ZWux]DaM_[b]fVt]XF">
+                        <field name="VAR" id="}Msf-u{Dl|0.Yu#6So/v" variabletype="">value</field>
                       </block>
                     </value>
+                    <value name="B">
+                      <block type="variables_get" id="-Do|%UWh@(3Y3+H~Ro1X">
+                        <field name="VAR" id="n0;nc_Dr/_p:@wv6]_ok" variabletype="">oldValue</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="comment" id="OT%UJ-_5Z@miCKvwpEIV">
+                    <field name="COMMENT">Sonderfälle ESP Reset oder Überlauf</field>
                     <next>
-                      <block type="controls_if" id="b}M#PiOt@nQf_KH*Ku8G">
+                      <block type="controls_if" id="kI:P`:(oX+mhj0Q,-Xtb">
                         <mutation else="1"></mutation>
                         <value name="IF0">
-                          <block type="logic_compare" id="k|HgAcO[X-XOgH9RG.Bl">
-                            <field name="OP">GT</field>
+                          <block type="logic_compare" id="fXHHN[xOf-YL{;[N$pZr">
+                            <field name="OP">GTE</field>
                             <value name="A">
-                              <block type="variables_get" id="2E=t!kK}M;FD(YC|GWMO">
-                                <field name="VAR" id="`=+tU0kV!rdU(pLX8z~=" variabletype="">deltaWert</field>
+                              <block type="variables_get" id="j;}a@H9fUkJpp=2Xi]nD">
+                                <field name="VAR" id="}Msf-u{Dl|0.Yu#6So/v" variabletype="">value</field>
                               </block>
                             </value>
                             <value name="B">
-                              <block type="math_number" id="Z`XBJJ9d8s^*A^Rkl5Ne">
+                              <block type="math_number" id="!dKQw_U|KR[yXN*``$^n">
                                 <field name="NUM">0</field>
                               </block>
                             </value>
                           </block>
                         </value>
                         <statement name="DO0">
-                          <block type="comment" id="uxrpe|vLp8C^eQN}gTk?">
-                            <field name="COMMENT">Wenn Zähler läuft</field>
+                          <block type="comment" id="lSy[*{wW7r:Ji,,JP|zJ">
+                            <field name="COMMENT">ESP Reset</field>
                             <next>
-                              <block type="controls_if" id="1$gZZr{,H.[1W=F`P+6H">
-                                <value name="IF0">
-                                  <block type="logic_negate" id="nnn3V6T:r]uDp7#VQ2Jj">
-                                    <value name="BOOL">
-                                      <block type="get_value" id="2bHy/]|Um2f5|aR/lh8W">
-                                        <field name="ATTR">val</field>
-                                        <field name="OID">javascript.0.Gas.BrennerAktiv</field>
+                              <block type="variables_set" id="2Z^oPYs+;J,^8Tb6bvto">
+                                <field name="VAR" id="`=+tU0kV!rdU(pLX8z~=" variabletype="">deltaWert</field>
+                                <value name="VALUE">
+                                  <block type="variables_get" id="9KK`=4C2c?c8h0dJTO:~">
+                                    <field name="VAR" id="}Msf-u{Dl|0.Yu#6So/v" variabletype="">value</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                        <statement name="ELSE">
+                          <block type="comment" id="}{2zg9V*R8{GvrH{%!=9">
+                            <field name="COMMENT">Impulswertüberlauf</field>
+                            <next>
+                              <block type="variables_set" id="Y=_pzgV5LK{.x,6,a(5,">
+                                <field name="VAR" id="`=+tU0kV!rdU(pLX8z~=" variabletype="">deltaWert</field>
+                                <value name="VALUE">
+                                  <block type="math_number" id="ws^8iTN,/HN^DO!$khsE">
+                                    <field name="NUM">1</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <statement name="ELSE">
+                  <block type="comment" id="yVm=`rt=.9(|0:~7ba^N">
+                    <field name="COMMENT">Anzahl Impulse seit letzter Änderung</field>
+                    <next>
+                      <block type="variables_set" id="(.T)I[h8]M9BrK?*QO#X">
+                        <field name="VAR" id="`=+tU0kV!rdU(pLX8z~=" variabletype="">deltaWert</field>
+                        <value name="VALUE">
+                          <block type="math_arithmetic" id="zBS:o#DCQ:e`}aOHVem{">
+                            <field name="OP">MINUS</field>
+                            <value name="A">
+                              <shadow type="math_number" id=".X^]lPIX{Y29#ZQ$=PDG">
+                                <field name="NUM">1</field>
+                              </shadow>
+                              <block type="variables_get" id="35cMtGqFa,0rRePT#n8n">
+                                <field name="VAR" id="}Msf-u{Dl|0.Yu#6So/v" variabletype="">value</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <shadow type="math_number" id="S=O^y)7,n[4X,I)IFu75">
+                                <field name="NUM">1</field>
+                              </shadow>
+                              <block type="variables_get" id=";()@![CVwvKn$y6cK9j]">
+                                <field name="VAR" id="n0;nc_Dr/_p:@wv6]_ok" variabletype="">oldValue</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <next>
+                  <block type="controls_if" id="b}M#PiOt@nQf_KH*Ku8G">
+                    <mutation else="1"></mutation>
+                    <value name="IF0">
+                      <block type="logic_compare" id="k|HgAcO[X-XOgH9RG.Bl">
+                        <field name="OP">GT</field>
+                        <value name="A">
+                          <block type="variables_get" id="2E=t!kK}M;FD(YC|GWMO">
+                            <field name="VAR" id="`=+tU0kV!rdU(pLX8z~=" variabletype="">deltaWert</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="Z`XBJJ9d8s^*A^Rkl5Ne">
+                            <field name="NUM">0</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="comment" id="uxrpe|vLp8C^eQN}gTk?">
+                        <field name="COMMENT">Wenn Zähler läuft</field>
+                        <next>
+                          <block type="controls_if" id="1$gZZr{,H.[1W=F`P+6H">
+                            <value name="IF0">
+                              <block type="logic_negate" id="nnn3V6T:r]uDp7#VQ2Jj">
+                                <value name="BOOL">
+                                  <block type="get_value" id="2bHy/]|Um2f5|aR/lh8W">
+                                    <field name="ATTR">val</field>
+                                    <field name="OID">javascript.0.Gas.BrennerAktiv</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <statement name="DO0">
+                              <block type="update" id="D8U~y%blHj%}o%JJi9UO">
+                                <mutation delay_input="false"></mutation>
+                                <field name="OID">javascript.0.Gas.BrennerAktiv</field>
+                                <field name="WITH_DELAY">FALSE</field>
+                                <value name="VALUE">
+                                  <block type="logic_boolean" id="wQE(sQLw;}t/UdJ0vS,*">
+                                    <field name="BOOL">TRUE</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="update" id="q`y]8pZbH6OeHkH2hk-S">
+                                    <mutation delay_input="false"></mutation>
+                                    <field name="OID">javascript.0.Gas.Brennerstarts</field>
+                                    <field name="WITH_DELAY">FALSE</field>
+                                    <value name="VALUE">
+                                      <block type="math_arithmetic" id="`pXjTA?.U,A-{zA`xmJ2">
+                                        <field name="OP">ADD</field>
+                                        <value name="A">
+                                          <shadow type="math_number" id="OBTR$cAW]d.Q2_:A`,|m">
+                                            <field name="NUM">1</field>
+                                          </shadow>
+                                          <block type="get_value" id="?5Ns?;l@YG62DMS%uH+S">
+                                            <field name="ATTR">val</field>
+                                            <field name="OID">javascript.0.Gas.Brennerstarts</field>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <shadow type="math_number" id="h9dR5H!mBcnw!0oOKCPK">
+                                            <field name="NUM">1</field>
+                                          </shadow>
+                                        </value>
                                       </block>
                                     </value>
                                   </block>
-                                </value>
-                                <statement name="DO0">
-                                  <block type="update" id="D8U~y%blHj%}o%JJi9UO">
-                                    <mutation delay_input="false"></mutation>
-                                    <field name="OID">javascript.0.Gas.BrennerAktiv</field>
-                                    <field name="WITH_DELAY">FALSE</field>
+                                </next>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="comment" id=".Xc.L`]DKa{-7MeZu;d{">
+                                <field name="COMMENT">Verbrauch in m³</field>
+                                <next>
+                                  <block type="variables_set" id="}RCDH=C`oTxaSzt)Kqo(">
+                                    <field name="VAR" id="`.UFBg~oDO@AKa{P|7/r" variabletype="">verbrauchInKubikmeter</field>
                                     <value name="VALUE">
-                                      <block type="logic_boolean" id="wQE(sQLw;}t/UdJ0vS,*">
-                                        <field name="BOOL">TRUE</field>
-                                      </block>
-                                    </value>
-                                    <next>
-                                      <block type="update" id="q`y]8pZbH6OeHkH2hk-S">
-                                        <mutation delay_input="false"></mutation>
-                                        <field name="OID">javascript.0.Gas.Brennerstarts</field>
-                                        <field name="WITH_DELAY">FALSE</field>
-                                        <value name="VALUE">
-                                          <block type="math_arithmetic" id="`pXjTA?.U,A-{zA`xmJ2">
+                                      <block type="math_rndfixed" id="OPSWh,LUhMTVBbwlfVUL">
+                                        <field name="n">2</field>
+                                        <value name="x">
+                                          <shadow type="math_number" id="[jW(:+w5OF*N]a#%FTZ3">
+                                            <field name="NUM">3.1234</field>
+                                          </shadow>
+                                          <block type="math_arithmetic" id="H@r5W;`;:nvgy4-J/i}n">
                                             <field name="OP">ADD</field>
                                             <value name="A">
-                                              <shadow type="math_number" id="OBTR$cAW]d.Q2_:A`,|m">
+                                              <shadow type="math_number" id="IRljlD/hGT]Q%/NR;[Hc">
                                                 <field name="NUM">1</field>
                                               </shadow>
-                                              <block type="get_value" id="?5Ns?;l@YG62DMS%uH+S">
+                                              <block type="get_value" id=":As67RY-!-rs~+P*NkfA">
                                                 <field name="ATTR">val</field>
-                                                <field name="OID">javascript.0.Gas.Brennerstarts</field>
+                                                <field name="OID">javascript.0.Gas.Verbrauch_Volumen</field>
                                               </block>
                                             </value>
                                             <value name="B">
-                                              <shadow type="math_number" id="h9dR5H!mBcnw!0oOKCPK">
-                                                <field name="NUM">1</field>
+                                              <shadow type="math_number" id="^f=?wN`8Oc9++-A,(O!B">
+                                                <field name="NUM">0.01</field>
                                               </shadow>
+                                              <block type="math_arithmetic" id="TfO5PC3z%:^l{UBh:Sa6">
+                                                <field name="OP">MULTIPLY</field>
+                                                <value name="A">
+                                                  <shadow type="math_number" id="QgjIdN1T,gA,MtsYA(ar">
+                                                    <field name="NUM">1</field>
+                                                  </shadow>
+                                                  <block type="variables_get" id="@hNZd$Fr?c2C*R%)k!zH">
+                                                    <field name="VAR" id="`=+tU0kV!rdU(pLX8z~=" variabletype="">deltaWert</field>
+                                                  </block>
+                                                </value>
+                                                <value name="B">
+                                                  <shadow type="math_number" id="gEQ+qiO.0cI},H0p]=-t">
+                                                    <field name="NUM">0.01</field>
+                                                  </shadow>
+                                                </value>
+                                              </block>
                                             </value>
                                           </block>
                                         </value>
                                       </block>
-                                    </next>
-                                  </block>
-                                </statement>
-                                <next>
-                                  <block type="comment" id=".Xc.L`]DKa{-7MeZu;d{">
-                                    <field name="COMMENT">Verbrauch in m³</field>
+                                    </value>
                                     <next>
-                                      <block type="variables_set" id="}RCDH=C`oTxaSzt)Kqo(">
-                                        <field name="VAR" id="`.UFBg~oDO@AKa{P|7/r" variabletype="">verbrauchInKubikmeter</field>
+                                      <block type="update" id="x+SFk2~D$bV~m{!1x;A9">
+                                        <mutation delay_input="false"></mutation>
+                                        <field name="OID">javascript.0.Gas.Verbrauch_Volumen</field>
+                                        <field name="WITH_DELAY">FALSE</field>
                                         <value name="VALUE">
-                                          <block type="math_rndfixed" id="OPSWh,LUhMTVBbwlfVUL">
-                                            <field name="n">2</field>
-                                            <value name="x">
-                                              <shadow type="math_number" id="[jW(:+w5OF*N]a#%FTZ3">
-                                                <field name="NUM">3.1234</field>
-                                              </shadow>
-                                              <block type="math_arithmetic" id="H@r5W;`;:nvgy4-J/i}n">
-                                                <field name="OP">ADD</field>
-                                                <value name="A">
-                                                  <shadow type="math_number" id="IRljlD/hGT]Q%/NR;[Hc">
-                                                    <field name="NUM">1</field>
-                                                  </shadow>
-                                                  <block type="get_value" id=":As67RY-!-rs~+P*NkfA">
-                                                    <field name="ATTR">val</field>
-                                                    <field name="OID">javascript.0.Gas.Verbrauch_Volumen</field>
-                                                  </block>
-                                                </value>
-                                                <value name="B">
-                                                  <shadow type="math_number" id="^f=?wN`8Oc9++-A,(O!B">
-                                                    <field name="NUM">0.01</field>
-                                                  </shadow>
-                                                  <block type="math_arithmetic" id="TfO5PC3z%:^l{UBh:Sa6">
-                                                    <field name="OP">MULTIPLY</field>
-                                                    <value name="A">
-                                                      <shadow type="math_number" id="QgjIdN1T,gA,MtsYA(ar">
-                                                        <field name="NUM">1</field>
-                                                      </shadow>
-                                                      <block type="variables_get" id="@hNZd$Fr?c2C*R%)k!zH">
-                                                        <field name="VAR" id="`=+tU0kV!rdU(pLX8z~=" variabletype="">deltaWert</field>
-                                                      </block>
-                                                    </value>
-                                                    <value name="B">
-                                                      <shadow type="math_number" id="gEQ+qiO.0cI},H0p]=-t">
-                                                        <field name="NUM">0.01</field>
-                                                      </shadow>
-                                                    </value>
-                                                  </block>
-                                                </value>
-                                              </block>
-                                            </value>
+                                          <block type="variables_get" id="#lx/pI!kuHdc[;04;tMF">
+                                            <field name="VAR" id="`.UFBg~oDO@AKa{P|7/r" variabletype="">verbrauchInKubikmeter</field>
                                           </block>
                                         </value>
                                         <next>
-                                          <block type="update" id="x+SFk2~D$bV~m{!1x;A9">
-                                            <mutation delay_input="false"></mutation>
-                                            <field name="OID">javascript.0.Gas.Verbrauch_Volumen</field>
-                                            <field name="WITH_DELAY">FALSE</field>
-                                            <value name="VALUE">
-                                              <block type="variables_get" id="#lx/pI!kuHdc[;04;tMF">
-                                                <field name="VAR" id="`.UFBg~oDO@AKa{P|7/r" variabletype="">verbrauchInKubikmeter</field>
-                                              </block>
-                                            </value>
+                                          <block type="comment" id="X2:C`C,%a5C1Xwe2*$B]">
+                                            <field name="COMMENT">Verbrauch in kwh</field>
                                             <next>
-                                              <block type="comment" id="X2:C`C,%a5C1Xwe2*$B]">
-                                                <field name="COMMENT">Verbrauch in kwh</field>
-                                                <next>
-                                                  <block type="variables_set" id="gPAck5Ylr?#wwGp8jVw1">
-                                                    <field name="VAR" id="|buGgY_h*rG@#N6JH6o$" variabletype="">verbrauchInKwh</field>
-                                                    <value name="VALUE">
-                                                      <block type="math_rndfixed" id="$yn_UFN`3F5Eji],3tz2">
-                                                        <field name="n">2</field>
-                                                        <value name="x">
-                                                          <shadow type="math_number" id="8`YFaSSxF|Z_s]!j|I#Q">
-                                                            <field name="NUM">3.1234</field>
+                                              <block type="variables_set" id="gPAck5Ylr?#wwGp8jVw1">
+                                                <field name="VAR" id="|buGgY_h*rG@#N6JH6o$" variabletype="">verbrauchInKwh</field>
+                                                <value name="VALUE">
+                                                  <block type="math_rndfixed" id="$yn_UFN`3F5Eji],3tz2">
+                                                    <field name="n">2</field>
+                                                    <value name="x">
+                                                      <shadow type="math_number" id="8`YFaSSxF|Z_s]!j|I#Q">
+                                                        <field name="NUM">3.1234</field>
+                                                      </shadow>
+                                                      <block type="math_arithmetic" id="Un)qd*c#?uI2BPNn4^6s">
+                                                        <field name="OP">MULTIPLY</field>
+                                                        <value name="A">
+                                                          <shadow type="math_number" id="@lwnV$9AqzY84~05EB[3">
+                                                            <field name="NUM">1</field>
                                                           </shadow>
-                                                          <block type="math_arithmetic" id="Un)qd*c#?uI2BPNn4^6s">
+                                                          <block type="math_arithmetic" id="CmEY+sg|0_@8%I,#oi,y">
                                                             <field name="OP">MULTIPLY</field>
                                                             <value name="A">
-                                                              <shadow type="math_number" id="@lwnV$9AqzY84~05EB[3">
+                                                              <shadow type="math_number" id=":6L5j$N2GYDUvs*2JZP|">
                                                                 <field name="NUM">1</field>
                                                               </shadow>
-                                                              <block type="math_arithmetic" id="CmEY+sg|0_@8%I,#oi,y">
-                                                                <field name="OP">MULTIPLY</field>
-                                                                <value name="A">
-                                                                  <shadow type="math_number" id=":6L5j$N2GYDUvs*2JZP|">
-                                                                    <field name="NUM">1</field>
-                                                                  </shadow>
-                                                                  <block type="variables_get" id="KqQObcPV_q]i`Wr/uecR">
-                                                                    <field name="VAR" id="`.UFBg~oDO@AKa{P|7/r" variabletype="">verbrauchInKubikmeter</field>
-                                                                  </block>
-                                                                </value>
-                                                                <value name="B">
-                                                                  <shadow type="math_number" id="L:Q^f@#+3{Wl#(R@b6B8">
-                                                                    <field name="NUM">1</field>
-                                                                  </shadow>
-                                                                  <block type="get_value" id="4X^5P6iVXii:[@zj*|4#">
-                                                                    <field name="ATTR">val</field>
-                                                                    <field name="OID">javascript.0.Gas.Brennwert</field>
-                                                                  </block>
-                                                                </value>
+                                                              <block type="variables_get" id="KqQObcPV_q]i`Wr/uecR">
+                                                                <field name="VAR" id="`.UFBg~oDO@AKa{P|7/r" variabletype="">verbrauchInKubikmeter</field>
                                                               </block>
                                                             </value>
                                                             <value name="B">
-                                                              <shadow type="math_number" id="~Jgfp;-u1I|3*+|`}li=">
+                                                              <shadow type="math_number" id="L:Q^f@#+3{Wl#(R@b6B8">
                                                                 <field name="NUM">1</field>
                                                               </shadow>
-                                                              <block type="get_value" id="cpz1XuEd~hWQsLxKeCw5">
+                                                              <block type="get_value" id="4X^5P6iVXii:[@zj*|4#">
                                                                 <field name="ATTR">val</field>
-                                                                <field name="OID">javascript.0.Gas.Zustandszahl</field>
+                                                                <field name="OID">javascript.0.Gas.Brennwert</field>
                                                               </block>
                                                             </value>
+                                                          </block>
+                                                        </value>
+                                                        <value name="B">
+                                                          <shadow type="math_number" id="~Jgfp;-u1I|3*+|`}li=">
+                                                            <field name="NUM">1</field>
+                                                          </shadow>
+                                                          <block type="get_value" id="cpz1XuEd~hWQsLxKeCw5">
+                                                            <field name="ATTR">val</field>
+                                                            <field name="OID">javascript.0.Gas.Zustandszahl</field>
                                                           </block>
                                                         </value>
                                                       </block>
                                                     </value>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="update" id="{EywqX%x=O],R-=zh^Ou">
+                                                    <mutation delay_input="false"></mutation>
+                                                    <field name="OID">javascript.0.Gas.Verbrauch_Energie</field>
+                                                    <field name="WITH_DELAY">FALSE</field>
+                                                    <value name="VALUE">
+                                                      <block type="variables_get" id="Ttzc/(GGUA8m;zj,(fc(">
+                                                        <field name="VAR" id="|buGgY_h*rG@#N6JH6o$" variabletype="">verbrauchInKwh</field>
+                                                      </block>
+                                                    </value>
                                                     <next>
-                                                      <block type="update" id="{EywqX%x=O],R-=zh^Ou">
-                                                        <mutation delay_input="false"></mutation>
-                                                        <field name="OID">javascript.0.Gas.Verbrauch_Energie</field>
-                                                        <field name="WITH_DELAY">FALSE</field>
-                                                        <value name="VALUE">
-                                                          <block type="variables_get" id="Ttzc/(GGUA8m;zj,(fc(">
-                                                            <field name="VAR" id="|buGgY_h*rG@#N6JH6o$" variabletype="">verbrauchInKwh</field>
-                                                          </block>
-                                                        </value>
+                                                      <block type="comment" id="n*n+ySs8B2#Yj~]8ygrm">
+                                                        <field name="COMMENT">gasVolumenStrom in m³/s</field>
                                                         <next>
-                                                          <block type="comment" id="n*n+ySs8B2#Yj~]8ygrm">
-                                                            <field name="COMMENT">gasVolumenStrom in m³/s</field>
-                                                            <next>
-                                                              <block type="variables_set" id="2bOYd_nXuHlGw0|So^*R">
-                                                                <field name="VAR" id="|wda0[7^Yn|7yk3EXgnK" variabletype="">gasVolumenStrom</field>
-                                                                <value name="VALUE">
-                                                                  <block type="math_arithmetic" id="U|alt0;;=a``-`%#)$:$">
-                                                                    <field name="OP">DIVIDE</field>
+                                                          <block type="variables_set" id="2bOYd_nXuHlGw0|So^*R">
+                                                            <field name="VAR" id="|wda0[7^Yn|7yk3EXgnK" variabletype="">gasVolumenStrom</field>
+                                                            <value name="VALUE">
+                                                              <block type="math_arithmetic" id="U|alt0;;=a``-`%#)$:$">
+                                                                <field name="OP">DIVIDE</field>
+                                                                <value name="A">
+                                                                  <shadow type="math_number" id="gevpOkTwbLFFQ?e.yXau">
+                                                                    <field name="NUM">1</field>
+                                                                  </shadow>
+                                                                  <block type="math_arithmetic" id="2Pzc#yKCEYM-7oJ3X|SR">
+                                                                    <field name="OP">MULTIPLY</field>
                                                                     <value name="A">
-                                                                      <shadow type="math_number" id="gevpOkTwbLFFQ?e.yXau">
+                                                                      <shadow type="math_number" id="$(,-q}6BpQp?vOhI$`VI">
                                                                         <field name="NUM">1</field>
                                                                       </shadow>
-                                                                      <block type="math_arithmetic" id="2Pzc#yKCEYM-7oJ3X|SR">
-                                                                        <field name="OP">MULTIPLY</field>
-                                                                        <value name="A">
-                                                                          <shadow type="math_number" id="$(,-q}6BpQp?vOhI$`VI">
-                                                                            <field name="NUM">1</field>
-                                                                          </shadow>
-                                                                          <block type="variables_get" id="M$F%tBX8-cTMT/{}KF_C">
-                                                                            <field name="VAR" id="`=+tU0kV!rdU(pLX8z~=" variabletype="">deltaWert</field>
-                                                                          </block>
-                                                                        </value>
-                                                                        <value name="B">
-                                                                          <shadow type="math_number" id="0J~CxDi%6}/~Zh{XIcr7">
-                                                                            <field name="NUM">0.01</field>
-                                                                          </shadow>
-                                                                        </value>
+                                                                      <block type="variables_get" id="M$F%tBX8-cTMT/{}KF_C">
+                                                                        <field name="VAR" id="`=+tU0kV!rdU(pLX8z~=" variabletype="">deltaWert</field>
                                                                       </block>
                                                                     </value>
                                                                     <value name="B">
-                                                                      <shadow type="math_number" id="/~Vgj#uQH+Jj}3*MG+67">
+                                                                      <shadow type="math_number" id="0J~CxDi%6}/~Zh{XIcr7">
                                                                         <field name="NUM">0.01</field>
                                                                       </shadow>
-                                                                      <block type="math_arithmetic" id="Wr:egiCU9ym?-2Kpxbr9">
-                                                                        <field name="OP">DIVIDE</field>
-                                                                        <value name="A">
-                                                                          <shadow type="math_number" id="@qKxSb}x%mf+ygdV#i_V">
-                                                                            <field name="NUM">1</field>
-                                                                          </shadow>
-                                                                          <block type="variables_get" id="-OiC^^MeGtPv#UM/[)4_">
-                                                                            <field name="VAR" id="j|{~CY1?y26]LN#~uT^4" variabletype="">deltaZeit</field>
-                                                                          </block>
-                                                                        </value>
-                                                                        <value name="B">
-                                                                          <shadow type="math_number" id="j9,aI1tbMvMW)-.IQ,3-">
-                                                                            <field name="NUM">1000</field>
-                                                                          </shadow>
-                                                                        </value>
-                                                                      </block>
                                                                     </value>
                                                                   </block>
                                                                 </value>
+                                                                <value name="B">
+                                                                  <shadow type="math_number" id="/~Vgj#uQH+Jj}3*MG+67">
+                                                                    <field name="NUM">0.01</field>
+                                                                  </shadow>
+                                                                  <block type="math_arithmetic" id="Wr:egiCU9ym?-2Kpxbr9">
+                                                                    <field name="OP">DIVIDE</field>
+                                                                    <value name="A">
+                                                                      <shadow type="math_number" id="@qKxSb}x%mf+ygdV#i_V">
+                                                                        <field name="NUM">1</field>
+                                                                      </shadow>
+                                                                      <block type="variables_get" id="-OiC^^MeGtPv#UM/[)4_">
+                                                                        <field name="VAR" id="j|{~CY1?y26]LN#~uT^4" variabletype="">deltaZeit</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <value name="B">
+                                                                      <shadow type="math_number" id="j9,aI1tbMvMW)-.IQ,3-">
+                                                                        <field name="NUM">1000</field>
+                                                                      </shadow>
+                                                                    </value>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </value>
+                                                            <next>
+                                                              <block type="comment" id="_2KV*_ZKAk6uASCV.j,U">
+                                                                <field name="COMMENT">leistung in W</field>
                                                                 <next>
-                                                                  <block type="comment" id="_2KV*_ZKAk6uASCV.j,U">
-                                                                    <field name="COMMENT">leistung in W</field>
-                                                                    <next>
-                                                                      <block type="variables_set" id="NYa)6aAT]c7T5fqT[Vw`">
-                                                                        <field name="VAR" id=".RAc/Lb(;YID{`r6^0zY" variabletype="">leistung</field>
-                                                                        <value name="VALUE">
-                                                                          <block type="math_round" id="6GOJpoZ!p=m*NIE2i4LN">
-                                                                            <field name="OP">ROUND</field>
-                                                                            <value name="NUM">
-                                                                              <shadow type="math_number" id="tS(v~{2(M~~+oGuzM%~-">
-                                                                                <field name="NUM">3.1</field>
+                                                                  <block type="variables_set" id="NYa)6aAT]c7T5fqT[Vw`">
+                                                                    <field name="VAR" id=".RAc/Lb(;YID{`r6^0zY" variabletype="">leistung</field>
+                                                                    <value name="VALUE">
+                                                                      <block type="math_round" id="6GOJpoZ!p=m*NIE2i4LN">
+                                                                        <field name="OP">ROUND</field>
+                                                                        <value name="NUM">
+                                                                          <shadow type="math_number" id="tS(v~{2(M~~+oGuzM%~-">
+                                                                            <field name="NUM">3.1</field>
+                                                                          </shadow>
+                                                                          <block type="math_arithmetic" id="#:kmjjKr1VDQ}w5htF1S">
+                                                                            <field name="OP">MULTIPLY</field>
+                                                                            <value name="A">
+                                                                              <shadow type="math_number" id="x8Jkb`Rk8@uT4m*poNg#">
+                                                                                <field name="NUM">1</field>
                                                                               </shadow>
-                                                                              <block type="math_arithmetic" id="#:kmjjKr1VDQ}w5htF1S">
+                                                                              <block type="math_arithmetic" id="B#k.sA64?=jabnA~W{@^">
                                                                                 <field name="OP">MULTIPLY</field>
                                                                                 <value name="A">
-                                                                                  <shadow type="math_number" id="x8Jkb`Rk8@uT4m*poNg#">
+                                                                                  <shadow type="math_number" id="@lwnV$9AqzY84~05EB[3">
                                                                                     <field name="NUM">1</field>
                                                                                   </shadow>
-                                                                                  <block type="math_arithmetic" id="B#k.sA64?=jabnA~W{@^">
+                                                                                  <block type="math_arithmetic" id="a@1~8/e^xbb)mx]FEQaF">
                                                                                     <field name="OP">MULTIPLY</field>
                                                                                     <value name="A">
-                                                                                      <shadow type="math_number" id="@lwnV$9AqzY84~05EB[3">
+                                                                                      <shadow type="math_number" id=":6L5j$N2GYDUvs*2JZP|">
                                                                                         <field name="NUM">1</field>
                                                                                       </shadow>
-                                                                                      <block type="math_arithmetic" id="a@1~8/e^xbb)mx]FEQaF">
-                                                                                        <field name="OP">MULTIPLY</field>
-                                                                                        <value name="A">
-                                                                                          <shadow type="math_number" id=":6L5j$N2GYDUvs*2JZP|">
-                                                                                            <field name="NUM">1</field>
-                                                                                          </shadow>
-                                                                                          <block type="variables_get" id="l?;aMlom;A[n70DD~{-6">
-                                                                                            <field name="VAR" id="|wda0[7^Yn|7yk3EXgnK" variabletype="">gasVolumenStrom</field>
-                                                                                          </block>
-                                                                                        </value>
-                                                                                        <value name="B">
-                                                                                          <shadow type="math_number" id="L:Q^f@#+3{Wl#(R@b6B8">
-                                                                                            <field name="NUM">1</field>
-                                                                                          </shadow>
-                                                                                          <block type="get_value" id="x]`!Rly+lsHM,|DChd}z">
-                                                                                            <field name="ATTR">val</field>
-                                                                                            <field name="OID">javascript.0.Gas.Brennwert</field>
-                                                                                          </block>
-                                                                                        </value>
+                                                                                      <block type="variables_get" id="l?;aMlom;A[n70DD~{-6">
+                                                                                        <field name="VAR" id="|wda0[7^Yn|7yk3EXgnK" variabletype="">gasVolumenStrom</field>
                                                                                       </block>
                                                                                     </value>
                                                                                     <value name="B">
-                                                                                      <shadow type="math_number" id="~Jgfp;-u1I|3*+|`}li=">
+                                                                                      <shadow type="math_number" id="L:Q^f@#+3{Wl#(R@b6B8">
                                                                                         <field name="NUM">1</field>
                                                                                       </shadow>
-                                                                                      <block type="get_value" id="H{-1JQ5BD[Ychb%4Mb62">
+                                                                                      <block type="get_value" id="x]`!Rly+lsHM,|DChd}z">
                                                                                         <field name="ATTR">val</field>
-                                                                                        <field name="OID">javascript.0.Gas.Zustandszahl</field>
+                                                                                        <field name="OID">javascript.0.Gas.Brennwert</field>
                                                                                       </block>
                                                                                     </value>
                                                                                   </block>
                                                                                 </value>
                                                                                 <value name="B">
-                                                                                  <shadow type="math_number" id="om$z,QFSwxB@N`Jfk[_0">
-                                                                                    <field name="NUM">3600000</field>
+                                                                                  <shadow type="math_number" id="~Jgfp;-u1I|3*+|`}li=">
+                                                                                    <field name="NUM">1</field>
                                                                                   </shadow>
+                                                                                  <block type="get_value" id="H{-1JQ5BD[Ychb%4Mb62">
+                                                                                    <field name="ATTR">val</field>
+                                                                                    <field name="OID">javascript.0.Gas.Zustandszahl</field>
+                                                                                  </block>
                                                                                 </value>
                                                                               </block>
                                                                             </value>
-                                                                          </block>
-                                                                        </value>
-                                                                        <next>
-                                                                          <block type="update" id="@Jv:J$OH0c4)|1VQsFh5">
-                                                                            <mutation delay_input="false"></mutation>
-                                                                            <field name="OID">javascript.0.Gas.Leistung</field>
-                                                                            <field name="WITH_DELAY">FALSE</field>
-                                                                            <value name="VALUE">
-                                                                              <block type="variables_get" id="uE3;$C_Oq6dOs4mAKrEW">
-                                                                                <field name="VAR" id=".RAc/Lb(;YID{`r6^0zY" variabletype="">leistung</field>
-                                                                              </block>
+                                                                            <value name="B">
+                                                                              <shadow type="math_number" id="om$z,QFSwxB@N`Jfk[_0">
+                                                                                <field name="NUM">3600000</field>
+                                                                              </shadow>
                                                                             </value>
                                                                           </block>
-                                                                        </next>
+                                                                        </value>
+                                                                      </block>
+                                                                    </value>
+                                                                    <next>
+                                                                      <block type="update" id="@Jv:J$OH0c4)|1VQsFh5">
+                                                                        <mutation delay_input="false"></mutation>
+                                                                        <field name="OID">javascript.0.Gas.Leistung</field>
+                                                                        <field name="WITH_DELAY">FALSE</field>
+                                                                        <value name="VALUE">
+                                                                          <block type="variables_get" id="uE3;$C_Oq6dOs4mAKrEW">
+                                                                            <field name="VAR" id=".RAc/Lb(;YID{`r6^0zY" variabletype="">leistung</field>
+                                                                          </block>
+                                                                        </value>
                                                                       </block>
                                                                     </next>
                                                                   </block>
@@ -421,126 +496,126 @@
                               </block>
                             </next>
                           </block>
-                        </statement>
-                        <statement name="ELSE">
-                          <block type="comment" id="!~rG(J)s{jb]8}jjr_z!">
-                            <field name="COMMENT">Wenn Zähler nicht läuft</field>
-                            <next>
-                              <block type="controls_if" id="+IR:m3C,`(TR6jd15!`]">
-                                <value name="IF0">
-                                  <block type="get_value" id="M;;uax(0),S(@Z~C3eRz">
-                                    <field name="ATTR">val</field>
-                                    <field name="OID">javascript.0.Gas.BrennerAktiv</field>
+                        </next>
+                      </block>
+                    </statement>
+                    <statement name="ELSE">
+                      <block type="comment" id="!~rG(J)s{jb]8}jjr_z!">
+                        <field name="COMMENT">Wenn Zähler nicht läuft</field>
+                        <next>
+                          <block type="controls_if" id="+IR:m3C,`(TR6jd15!`]">
+                            <value name="IF0">
+                              <block type="get_value" id="M;;uax(0),S(@Z~C3eRz">
+                                <field name="ATTR">val</field>
+                                <field name="OID">javascript.0.Gas.BrennerAktiv</field>
+                              </block>
+                            </value>
+                            <statement name="DO0">
+                              <block type="variables_set" id="L8$U,7,uqA~kpGcSdL[!">
+                                <field name="VAR" id="j|{~CY1?y26]LN#~uT^4" variabletype="">deltaZeit</field>
+                                <value name="VALUE">
+                                  <block type="math_arithmetic" id=":SBR(Rg/L*Dx{gvMg5m*">
+                                    <field name="OP">MINUS</field>
+                                    <value name="A">
+                                      <shadow type="math_number" id="jv=+URC]vb}!KUMl])(N">
+                                        <field name="NUM">1</field>
+                                      </shadow>
+                                      <block type="time_get" id=")VsKj-1XaX:./uXEa5ZH">
+                                        <mutation format="false" language="false"></mutation>
+                                        <field name="OPTION">object</field>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <shadow type="math_number" id="sOYw8i7@c01ztd+C@2T:">
+                                        <field name="NUM">1</field>
+                                      </shadow>
+                                      <block type="get_value" id="phQ9*[2-Q:[3@V=6%}A~">
+                                        <field name="ATTR">lc</field>
+                                        <field name="OID">javascript.0.Gas.BrennerAktiv</field>
+                                      </block>
+                                    </value>
                                   </block>
                                 </value>
-                                <statement name="DO0">
-                                  <block type="variables_set" id="L8$U,7,uqA~kpGcSdL[!">
-                                    <field name="VAR" id="j|{~CY1?y26]LN#~uT^4" variabletype="">deltaZeit</field>
+                                <next>
+                                  <block type="update" id="FRbl/+V9+K_11F?+5X~H">
+                                    <mutation delay_input="false"></mutation>
+                                    <field name="OID">javascript.0.Gas.BrennerAktiv</field>
+                                    <field name="WITH_DELAY">FALSE</field>
                                     <value name="VALUE">
-                                      <block type="math_arithmetic" id=":SBR(Rg/L*Dx{gvMg5m*">
-                                        <field name="OP">MINUS</field>
-                                        <value name="A">
-                                          <shadow type="math_number" id="jv=+URC]vb}!KUMl])(N">
-                                            <field name="NUM">1</field>
-                                          </shadow>
-                                          <block type="time_get" id=")VsKj-1XaX:./uXEa5ZH">
-                                            <mutation format="false" language="false"></mutation>
-                                            <field name="OPTION">object</field>
-                                          </block>
-                                        </value>
-                                        <value name="B">
-                                          <shadow type="math_number" id="sOYw8i7@c01ztd+C@2T:">
-                                            <field name="NUM">1</field>
-                                          </shadow>
-                                          <block type="get_value" id="phQ9*[2-Q:[3@V=6%}A~">
-                                            <field name="ATTR">lc</field>
-                                            <field name="OID">javascript.0.Gas.BrennerAktiv</field>
-                                          </block>
-                                        </value>
+                                      <block type="logic_boolean" id="b5[fc#i)p#Dz#re,o@$H">
+                                        <field name="BOOL">FALSE</field>
                                       </block>
                                     </value>
                                     <next>
-                                      <block type="update" id="FRbl/+V9+K_11F?+5X~H">
+                                      <block type="update" id="Dp[:J;@VmB]Rhaq!=Gt=">
                                         <mutation delay_input="false"></mutation>
-                                        <field name="OID">javascript.0.Gas.BrennerAktiv</field>
+                                        <field name="OID">javascript.0.Gas.Leistung</field>
                                         <field name="WITH_DELAY">FALSE</field>
                                         <value name="VALUE">
-                                          <block type="logic_boolean" id="b5[fc#i)p#Dz#re,o@$H">
-                                            <field name="BOOL">FALSE</field>
+                                          <block type="math_number" id="r/lYKPiTFhT=;~A5,`s#">
+                                            <field name="NUM">0</field>
                                           </block>
                                         </value>
                                         <next>
-                                          <block type="update" id="Dp[:J;@VmB]Rhaq!=Gt=">
+                                          <block type="update" id="V?-YD=E*swH%?w]u8]C3">
                                             <mutation delay_input="false"></mutation>
-                                            <field name="OID">javascript.0.Gas.Leistung</field>
+                                            <field name="OID">javascript.0.Gas.Brennerlaufzeit</field>
                                             <field name="WITH_DELAY">FALSE</field>
                                             <value name="VALUE">
-                                              <block type="math_number" id="r/lYKPiTFhT=;~A5,`s#">
-                                                <field name="NUM">0</field>
-                                              </block>
-                                            </value>
-                                            <next>
-                                              <block type="update" id="V?-YD=E*swH%?w]u8]C3">
-                                                <mutation delay_input="false"></mutation>
-                                                <field name="OID">javascript.0.Gas.Brennerlaufzeit</field>
-                                                <field name="WITH_DELAY">FALSE</field>
-                                                <value name="VALUE">
-                                                  <block type="math_round" id="oz=E@^Wu;9D%EzB|-tTB">
-                                                    <field name="OP">ROUND</field>
-                                                    <value name="NUM">
-                                                      <shadow type="math_number" id="=UU6[2Mf,+52VZohxzBd">
-                                                        <field name="NUM">3.1</field>
+                                              <block type="math_round" id="oz=E@^Wu;9D%EzB|-tTB">
+                                                <field name="OP">ROUND</field>
+                                                <value name="NUM">
+                                                  <shadow type="math_number" id="=UU6[2Mf,+52VZohxzBd">
+                                                    <field name="NUM">3.1</field>
+                                                  </shadow>
+                                                  <block type="math_arithmetic" id="TMD:o`BDaVhh{ht0=j-y">
+                                                    <field name="OP">ADD</field>
+                                                    <value name="A">
+                                                      <shadow type="math_number" id="Vo9Ugrko81IsDdZx/#p1">
+                                                        <field name="NUM">1</field>
                                                       </shadow>
-                                                      <block type="math_arithmetic" id="TMD:o`BDaVhh{ht0=j-y">
-                                                        <field name="OP">ADD</field>
+                                                      <block type="get_value" id="nuWK%m!BsJRv)Ff6(%)W">
+                                                        <field name="ATTR">val</field>
+                                                        <field name="OID">javascript.0.Gas.Brennerlaufzeit</field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="B">
+                                                      <shadow type="math_number" id="k/iqJq#5JK:om~u0%T^U">
+                                                        <field name="NUM">1</field>
+                                                      </shadow>
+                                                      <block type="math_arithmetic" id="ASpp#Uc,}k@:iPe(2D32">
+                                                        <field name="OP">DIVIDE</field>
                                                         <value name="A">
-                                                          <shadow type="math_number" id="Vo9Ugrko81IsDdZx/#p1">
+                                                          <shadow type="math_number" id="h.:;CYF$0+u*9J*8i`#]">
                                                             <field name="NUM">1</field>
                                                           </shadow>
-                                                          <block type="get_value" id="nuWK%m!BsJRv)Ff6(%)W">
-                                                            <field name="ATTR">val</field>
-                                                            <field name="OID">javascript.0.Gas.Brennerlaufzeit</field>
+                                                          <block type="variables_get" id="40}5XLe3B62c4S.jGOAV">
+                                                            <field name="VAR" id="j|{~CY1?y26]LN#~uT^4" variabletype="">deltaZeit</field>
                                                           </block>
                                                         </value>
                                                         <value name="B">
-                                                          <shadow type="math_number" id="k/iqJq#5JK:om~u0%T^U">
-                                                            <field name="NUM">1</field>
+                                                          <shadow type="math_number" id="rx/!!B`*GM`$#Te+]x/j">
+                                                            <field name="NUM">1000</field>
                                                           </shadow>
-                                                          <block type="math_arithmetic" id="ASpp#Uc,}k@:iPe(2D32">
-                                                            <field name="OP">DIVIDE</field>
-                                                            <value name="A">
-                                                              <shadow type="math_number" id="h.:;CYF$0+u*9J*8i`#]">
-                                                                <field name="NUM">1</field>
-                                                              </shadow>
-                                                              <block type="variables_get" id="40}5XLe3B62c4S.jGOAV">
-                                                                <field name="VAR" id="j|{~CY1?y26]LN#~uT^4" variabletype="">deltaZeit</field>
-                                                              </block>
-                                                            </value>
-                                                            <value name="B">
-                                                              <shadow type="math_number" id="rx/!!B`*GM`$#Te+]x/j">
-                                                                <field name="NUM">1000</field>
-                                                              </shadow>
-                                                            </value>
-                                                          </block>
                                                         </value>
                                                       </block>
                                                     </value>
                                                   </block>
                                                 </value>
                                               </block>
-                                            </next>
+                                            </value>
                                           </block>
                                         </next>
                                       </block>
                                     </next>
                                   </block>
-                                </statement>
+                                </next>
                               </block>
-                            </next>
+                            </statement>
                           </block>
-                        </statement>
+                        </next>
                       </block>
-                    </next>
+                    </statement>
                   </block>
                 </next>
               </block>
