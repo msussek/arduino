@@ -30,6 +30,7 @@ const char* password = "meinWLANPasswort";
 
 // Zugangsdaten zum MQTT-Broker:
 const char* mqtt_server = "HostnameMQTT-Broker";
+const int   mqtt_port = 1883;
 const char* mqtt_user = "meinMQTTUserName";
 const char* mqtt_password = "meinMQTTPasswort";
 
@@ -169,7 +170,7 @@ void setup(){
     entprellZeit[i]=1000;
   }
 
-  client.setServer(mqtt_server, 1883);
+  client.setServer(mqtt_server, mqtt_port);
  
   server.on("/", handleHttpRequest);     //  Bechandlung der Ereignissen anschlissen
   httpUpdater.setup(&server);         //  Updater
